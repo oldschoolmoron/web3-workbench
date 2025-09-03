@@ -38,6 +38,36 @@ function findHashWithPrefixString(prefix){
     input++;
   }
 }
-const result = findHashWithPrefixString('100xdev');
-console.log(`result : ${result.input}`);
+// const result = findHashWithPrefixString('100xdev');
+// console.log(`result : ${result.input}`);
+// console.log(`input: ${result.hash}`);
+
+// Assignment #3 find a nonce for the following input. // nonce => number used once
+// userOne => UserTwo | Rs 100
+// someUserX => someUserY | Rs 10
+
+const block = {
+  transactions : [
+    "userOne => userTwo | Rs 100",
+    "someUserX => someUserY | Rs 10"
+  ],
+  nonce : 0, //will keeping changing
+  prevHash : "00000abg123" // in real blockchain, from previous block
+}
+
+function findingHashwithPrevHash(block, prefix){ 
+  while(true){
+    let currHash = crypto.createHash('sha256').update(JSON.stringify(block)).digest('base64');
+    if(currHash.startsWith(prefix)){
+      return { nonce: block.nonce, hash: currHash };
+    }
+    block.nonce++;
+  }
+}
+
+// core concept : block structure with transactions, nonce, and prevHash
+const result = findingHashwithPrevHash(block, "dev")
+console.log(`Result: ${result.nonce}`);
 console.log(`input: ${result.hash}`);
+
+
