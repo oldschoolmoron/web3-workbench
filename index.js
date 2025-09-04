@@ -80,7 +80,7 @@ function calculateHash(block){
   .digest("hex")
 }
 
-//mine block --> simple means just find hash starting with '000'
+//mine block --> simply means find hash starting with '000'
 function mineBlock(transactions, prevHash){
   let nonce = 0;
   while(true){
