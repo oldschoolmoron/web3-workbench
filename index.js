@@ -73,14 +73,14 @@ function findingHashwithPrevHash(block, prefix){
 
 // Assignment 4 How can I link multiple blocks into a chain, where each block uses the previous block’s hash?
 
-// this is how thinks work under the hood (conceptually)
+// this is how things work under the hood (conceptually)
 function calculateHash(block){
   return crypto.createHash('sha256')
   .update(JSON.stringify(block.transactions)+ block.nonce + block.prevHash)
   .digest("hex")
 }
 
-//mine block --> simple means just find hash starting with '000'
+//mine block --> simply means find hash starting with '000'
 function mineBlock(transactions, prevHash){
   let nonce = 0;
   while(true){
